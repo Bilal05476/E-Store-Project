@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Breadcrumb from "../common/breadcrumb";
 import data from "../../assets/data/listUser";
 import Datatable from "../common/datatable";
@@ -15,12 +15,12 @@ const List_user = () => {
 						<h5>User Details</h5>
 					</CardHeader>
 					<CardBody>
-						<div className="btn-popup pull-right">
+						{/* <div className="btn-popup pull-right">
 							<Link to="/users/create-user" className="btn btn-secondary">
 								Create User
 							</Link>
-						</div>
-						<div className="clearfix"></div>
+						</div> */}
+						{/* <div className="clearfix"></div> */}
 						<div
 							id="batchDelete"
 							className="category-table user-list order-table coupon-list-delete"
