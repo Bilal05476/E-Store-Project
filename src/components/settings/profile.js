@@ -21,8 +21,8 @@ const Profile = () => {
 										alt=""
 										className="img-fluid img-90 rounded-circle blur-up lazyloaded"
 									/>
-									<h5 className="f-w-600 f-16 mb-0">John deo</h5>
-									<span>johndeo@gmail.com</span>
+									<h5 className="f-w-600 f-16 mb-0">Bilal Ahmed</h5>
+									<span>storemanager@gmail.com</span>
 									<div className="social">
 										<div className="form-group btn-showcase">
 											<Button color="btn social-btn btn-fb d-inline-block">
@@ -33,7 +33,7 @@ const Profile = () => {
 												<i className="fa fa-google"></i>
 											</Button>
 											<Button color="btn social-btn btn-google d-inline-block mr-0">
-												<i className="fa fa-twitter"></i>
+												<i className="fa fa-instagram"></i>
 											</Button>
 										</div>
 									</div>

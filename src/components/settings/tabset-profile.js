@@ -25,16 +25,12 @@ const TabsetProfile = () => {
 							<Table className="table-responsive">
 								<tbody>
 									<tr>
-										<td>First Name:</td>
-										<td>John</td>
-									</tr>
-									<tr>
-										<td>Last Name:</td>
-										<td>Deo</td>
+										<td>Full Name:</td>
+										<td>Bilal Ahmed</td>
 									</tr>
 									<tr>
 										<td>Email:</td>
-										<td>johndeo@gmail.com</td>
+										<td>storemanager@gmail.com</td>
 									</tr>
 									<tr>
 										<td>Gender:</td>
@@ -46,11 +42,11 @@ const TabsetProfile = () => {
 									</tr>
 									<tr>
 										<td>DOB:</td>
-										<td>Dec, 15 1993</td>
+										<td>Jan, 20 2000</td>
 									</tr>
 									<tr>
 										<td>Location:</td>
-										<td>USA</td>
+										<td>PK</td>
 									</tr>
 								</tbody>
 							</Table>
@@ -58,48 +54,8 @@ const TabsetProfile = () => {
 					</div>
 				</TabPanel>
 				<TabPanel>
-					{/* <div className="tab-pane fade"> */}
-					<div className="account-setting">
-						<h5 className="f-w-600 f-16">Notifications</h5>
-						<Row>
-							<Col>
-								<Label className="d-block">
-									<Input
-										className="checkbox_animated"
-										id="chk-ani"
-										type="checkbox"
-										defaultChecked
-									/>
-									Allow Desktop Notifications
-								</Label>
-								<Label className="d-block">
-									<Input
-										className="checkbox_animated"
-										id="chk-ani1"
-										type="checkbox"
-									/>
-									Enable Notifications
-								</Label>
-								<Label className="d-block">
-									<Input
-										className="checkbox_animated"
-										id="chk-ani2"
-										type="checkbox"
-									/>
-									Get notification for my own activity
-								</Label>
-								<Label className="d-block mb-0">
-									<Input
-										className="checkbox_animated"
-										id="chk-ani3"
-										type="checkbox"
-										defaultChecked
-									/>
-									DND
-								</Label>
-							</Col>
-						</Row>
-					</div>
+				
+					
 					<div className="account-setting deactivate-account">
 						<h5 className="f-w-600 f-16">Deactivate Account</h5>
 						<Row>
@@ -139,46 +95,6 @@ const TabsetProfile = () => {
 							Deactivate Account
 						</Button>
 					</div>
-					<div className="account-setting deactivate-account">
-						<h5 className="f-w-600 f-16">Delete Account</h5>
-						<Row>
-							<Col>
-								<Label className="d-block">
-									<Input
-										className="radio_animated"
-										id="edo-ani3"
-										type="radio"
-										name="rdo-ani1"
-										defaultChecked
-									/>
-									No longer usable
-								</Label>
-								<Label className="d-block">
-									<Input
-										className="radio_animated"
-										id="edo-ani4"
-										type="radio"
-										name="rdo-ani1"
-									/>
-									Want to switch on other account
-								</Label>
-								<Label className="d-block mb-0">
-									<Input
-										className="radio_animated"
-										id="edo-ani5"
-										type="radio"
-										name="rdo-ani1"
-										defaultChecked
-									/>
-									Other
-								</Label>
-							</Col>
-						</Row>
-						<Button type="button" color="primary">
-							Delete Account
-						</Button>
-					</div>
-					{/* </div> */}
 				</TabPanel>
 			</Tabs>
 		</div>

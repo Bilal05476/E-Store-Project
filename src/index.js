@@ -43,6 +43,11 @@ const Root = () => {
           <App>
             <Route
               exact
+              path={`${process.env.PUBLIC_URL}/`}
+              component={Dashboard}
+            />
+            <Route
+              exact
               path={`${process.env.PUBLIC_URL}/dashboard`}
               component={Dashboard}
             />
