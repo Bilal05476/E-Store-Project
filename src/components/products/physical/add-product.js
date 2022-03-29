@@ -18,19 +18,14 @@ import one from "../../../assets/images/pro3/1.jpg";
 import user from "../../../assets/images/user.png";
 
 const Add_product = ({ afterPaste, onBlur, onChange }) => {
-	const [quantity, setQuantity] = useState(1);
+	const [quantity, setQuantity] = useState(0);
 	const [file, setFile] = useState();
 	const [dummyimgs, setDummyimgs] = useState([
-		{ img: user },
-		{ img: user },
-		{ img: user },
-		{ img: user },
-		{ img: user },
 		{ img: user },
 	]);
 
 	const IncrementItem = () => {
-		if (quantity < 9) {
+		if (quantity < 1001) {
 			setQuantity(quantity + 1);
 		} else {
 			return null;

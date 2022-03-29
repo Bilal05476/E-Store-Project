@@ -41,23 +41,7 @@ const Digital_add_pro = ({ onBlur, onChange, afterPaste }) => {
 											required=""
 										/>
 									</FormGroup>
-									<FormGroup>
-										<Label className="col-form-label">
-											<span>*</span> Categories
-										</Label>
-										<select className="custom-select" required="">
-											<option value="">--Select--</option>
-											<option value="1">eBooks</option>
-											<option value="2">Graphic Design</option>
-											<option value="3">3D Impact</option>
-											<option value="4">Application</option>
-											<option value="5">Websites</option>
-										</select>
-									</FormGroup>
-									<FormGroup>
-										<Label className="col-form-label">Sort Summary</Label>
-										<textarea rows="4" cols="12"></textarea>
-									</FormGroup>
+									
 									<FormGroup>
 										<Label className="col-form-label">
 											<span>*</span> Product Price
