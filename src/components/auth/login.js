@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import LoginTabset from "./loginTabset";
 import Slider from "react-slick";
 import stats from "../../assets/images/dashboard/stats.png";
@@ -35,16 +35,7 @@ const Login = () => {
 												</p>
 											</div>
 										</div>
-										{/* <div>
-											<div>
-												<h3>Welcome to Multikart</h3>
-												<p>
-													Lorem Ipsum is simply dummy text of the printing and
-													typesetting industry. Lorem Ipsum has been the
-													industry's standard dummy.
-												</p>
-											</div>
-										</div> */}
+										
 									</Slider>
 								</Card>
 							</Col>

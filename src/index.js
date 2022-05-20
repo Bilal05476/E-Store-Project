@@ -1,4 +1,4 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./index.scss";
@@ -29,66 +29,72 @@ import Profile from "./components/settings/profile";
 import Login from "./components/auth/login";
 
 const Root = () => {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    setUser(null);
+  }, []);
+
   return (
     <BrowserRouter basename={"/"}>
       <PerfectScrollbar>
         <Switch>
-          {/* <Route exact path={`${process.env.PUBLIC_URL}/`} component={Login} /> */}
-          <Route
-            exact
-            path={`${process.env.PUBLIC_URL}/eb-admin`}
-            component={Login}
-          />
-
-          <App>
+          {!user ? (
             <Route
               exact
               path={`${process.env.PUBLIC_URL}/`}
-              component={Dashboard}
+              component={Login}
             />
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/dashboard`}
-              component={Dashboard}
-            />
+          ) : (
+            <App>
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/`}
+                component={Dashboard}
+              />
+              <Route
+                exact
+                path={`${process.env.PUBLIC_URL}/dashboard`}
+                component={Dashboard}
+              />
 
-            <Route
-              path={`${process.env.PUBLIC_URL}/products/physical/product-list`}
-              component={Product_list}
-            />
-            <Route
-              path={`${process.env.PUBLIC_URL}/products/physical/add-product`}
-              component={Add_product}
-            />
+              <Route
+                path={`${process.env.PUBLIC_URL}/products/physical/product-list`}
+                component={Product_list}
+              />
+              <Route
+                path={`${process.env.PUBLIC_URL}/products/physical/add-product`}
+                component={Add_product}
+              />
 
-            <Route
-              path={`${process.env.PUBLIC_URL}/products/digital/digital-product-list`}
-              component={Digital_pro_list}
-            />
-            <Route
-              path={`${process.env.PUBLIC_URL}/products/digital/digital-add-product`}
-              component={Digital_add_pro}
-            />
+              <Route
+                path={`${process.env.PUBLIC_URL}/products/digital/digital-product-list`}
+                component={Digital_pro_list}
+              />
+              <Route
+                path={`${process.env.PUBLIC_URL}/products/digital/digital-add-product`}
+                component={Digital_add_pro}
+              />
 
-            <Route
-              path={`${process.env.PUBLIC_URL}/sales/orders`}
-              component={Orders}
-            />
-            <Route
-              path={`${process.env.PUBLIC_URL}/sales/transactions`}
-              component={Transactions_sales}
-            />
+              <Route
+                path={`${process.env.PUBLIC_URL}/sales/orders`}
+                component={Orders}
+              />
+              <Route
+                path={`${process.env.PUBLIC_URL}/sales/transactions`}
+                component={Transactions_sales}
+              />
 
-            <Route
-              path={`${process.env.PUBLIC_URL}/users/list-user`}
-              component={List_user}
-            />
+              <Route
+                path={`${process.env.PUBLIC_URL}/users/list-user`}
+                component={List_user}
+              />
 
-            <Route
-              path={`${process.env.PUBLIC_URL}/settings/profile`}
-              component={Profile}
-            />
-          </App>
+              <Route
+                path={`${process.env.PUBLIC_URL}/settings/profile`}
+                component={Profile}
+              />
+            </App>
+          )}
         </Switch>
       </PerfectScrollbar>
     </BrowserRouter>
