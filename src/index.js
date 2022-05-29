@@ -31,7 +31,7 @@ import Login from "./components/auth/login";
 const Root = () => {
   const [user, setUser] = useState(null);
   useEffect(() => {
-    setUser(null);
+    setUser("null");
   }, []);
 
   return (

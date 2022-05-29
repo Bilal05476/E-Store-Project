@@ -481,7 +481,7 @@ a {
       li{
         padding: 10px;
         border-radius: 100%;
-        border: 1px solid #ff8084;
+        border: 1px solid #0000feab;
         height: 40px;
         width: 40px;
         margin-right: 10px;
@@ -517,7 +517,9 @@ a {
       margin-bottom: 1.5rem;
     }
     .svg-icon{
-      padding: 24px;
+      padding: 8px;
+      display: flex;
+      align-items: center;
       margin: 0 auto;
       border: 2px dashed $white;
       border-radius: 100%;
@@ -2228,8 +2230,11 @@ ul.notification-dropdown.onhover-show-div {
         z-index: $main-header-z-index;
         box-shadow: -3px 1px 3px 1px rgba(68, 102, 242, 0.1);
         .logo-wrapper {
-          padding-left: 10px;
-          height: 100%;
+          padding-left: 2px;
+          height: 60px;
+          width: 100%;
+          padding-bottom: 5px;
+          overflow: hidden;
           display: flex;
           align-items: center;
         }
@@ -3338,11 +3343,9 @@ $i: 1;
       z-index: 11;
       .main-header-left {
         .logo-wrapper {
-          img {
-            height: 23px;
-            margin-top: 0;
-            margin-right: 15px;
-          }
+            .logo-image {
+              width: 10%;
+            }
         }
       }
       .main-header-right {
