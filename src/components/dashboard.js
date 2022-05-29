@@ -1,30 +1,25 @@
 import React, { Fragment } from "react";
 import Breadcrumb from "./common/breadcrumb";
-import {
-	Navigation,
-	Box,
-	DollarSign
-} from "react-feather";
+import { Navigation, Box, DollarSign } from "react-feather";
 import CountUp from "react-countup";
 
 import user2 from "../assets/images/dashboard/user2.jpg";
 import {
-	Card,
-	CardBody,
-	CardHeader,
-	Col,
-	Container,
-	Media,
-	Row,
-	Table,
+  Card,
+  CardBody,
+  CardHeader,
+  Col,
+  Container,
+  Media,
+  Row,
+  Table,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
-	
-	return (
+  return (
     <Fragment>
-      <Breadcrumb title="Dashboard" parent="Dashboard" />
+      <Breadcrumb title="" parent="Dashboard" />
       <Container fluid={true}>
         <Row>
           <Col xl="3 xl-50" md="6">
@@ -37,10 +32,10 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <Media body className="col-8">
-                    <span className="m-0">Sales</span>
+                    <span className="m-0">Orders</span>
                     <h3 className="mb-0">
                       Rs <CountUp className="counter" end={12000} />
-                      <small> This Month</small>
+                      <small> /Only</small>
                     </h3>
                   </Media>
                 </Media>
@@ -57,10 +52,10 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <Media body className="col-8">
-                    <span className="m-0">Products</span>
+                    <span className="m-0">Inventory</span>
                     <h3 className="mb-0">
                       Rs <CountUp className="counter" end={9200} />
-                      <small> This Month</small>
+                      <small> /Only</small>
                     </h3>
                   </Media>
                 </Media>
@@ -77,10 +72,10 @@ const Dashboard = () => {
                     </div>
                   </div>
                   <Media body className="col-8">
-                    <span className="m-0">Profit</span>
+                    <span className="m-0">Sales</span>
                     <h3 className="mb-0">
                       Rs <CountUp className="counter" end={2800} />
-                      <small> This Month</small>
+                      <small> /Only</small>
                     </h3>
                   </Media>
                 </Media>
@@ -110,12 +105,6 @@ const Dashboard = () => {
                         <td className="digits">Rs1200.00</td>
                         <td className="font-secondary">Cash On Delivery</td>
                         <td className="digits">In Process</td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td className="digits">Rs900.00</td>
-                        <td className="font-secondary">Cash On Delivery</td>
-                        <td className="digits">Delivered</td>
                       </tr>
                     </tbody>
                   </Table>
@@ -156,7 +145,7 @@ const Dashboard = () => {
                             />
                             <div className="d-inline-block">
                               <h6>
-                                Sheraz Ahmed{" "}
+                                Bilal Ahmed{" "}
                                 <span className="text-muted digits">
                                   (Online)
                                 </span>
@@ -164,13 +153,13 @@ const Dashboard = () => {
                             </div>
                           </div>
                         </td>
-                        <td>Creative Designer</td>
+                        <td>Store Manager</td>
                         <td>
                           <div className="progress-showcase">
                             <div className="progress" style={{ height: 8 }}>
                               <div
                                 className="progress-bar bg-primary"
-                                style={{ width: 90 }}
+                                style={{ width: "90%" }}
                                 role="progressbar"
                                 aria-valuenow="100"
                                 aria-valuemin="0"

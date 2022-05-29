@@ -75,7 +75,7 @@ const Sidebar = () => {
       {menuItem.type === "sub" ? (
         <a
           className="sidebar-header "
-          href="#javaScript"
+          href="#"
           onClick={() => setNavActive(menuItem)}
         >
           <menuItem.icon />
@@ -123,10 +123,7 @@ const Sidebar = () => {
               }
             >
               {childrenItem.type === "sub" ? (
-                <a
-                  href="#javaScript"
-                  onClick={() => setNavActive(childrenItem)}
-                >
+                <a href="#" onClick={() => setNavActive(childrenItem)}>
                   <i className="fa fa-circle"></i>
                   {childrenItem.title}{" "}
                   <i className="fa fa-angle-right pull-right"></i>
