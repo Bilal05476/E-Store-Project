@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import Breadcrumb from "../../common/breadcrumb";
-import MyDropzone from "../../common/dropzone";
 import {
   Button,
   Card,
@@ -15,6 +14,14 @@ import {
 } from "reactstrap";
 
 const Digital_add_pro = () => {
+  const [state, setState] = useState({
+    productTitle: "",
+    productDescription: "",
+    productPrice: 0,
+    productImage: "",
+    productMetaTitle: "",
+    productMetaDesc: "",
+  });
   return (
     <>
       <Breadcrumb title="Add Products" parent="Product" />
@@ -35,35 +42,53 @@ const Digital_add_pro = () => {
                       className="form-control"
                       id="validationCustom01"
                       type="text"
-                      required=""
+                      required="true"
+                      value={state.productTitle}
                     />
                   </FormGroup>
-                  <FormGroup>
-                    <Label className="col-form-label pt-0">
-                      <span>*</span> SKU
+
+                  {/* <Label className="col-form-label pt-0"> Image Upload</Label> */}
+                  {/* <MyDropzone /> */}
+
+                  <FormGroup
+                    style={{
+                      border: "3px dotted #0000fe",
+                      borderRadius: "10px",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      padding: "30px",
+                    }}
+                  >
+                    <Label className="col-form-label">
+                      <span>*</span> Image Upload
                     </Label>
                     <Input
                       className="form-control"
                       id="validationCustom02"
-                      type="text"
-                      required=""
+                      type="file"
+                      required="true"
+                      value={state.productImage}
+                      style={{
+                        padding: "0px",
+                        border: "0px",
+                      }}
                     />
                   </FormGroup>
 
                   <FormGroup>
                     <Label className="col-form-label">
-                      <span>*</span> Product Price
+                      <span>*</span> Product Price (Rs)
                     </Label>
                     <Input
                       className="form-control"
                       id="validationCustom02"
-                      type="text"
-                      required=""
+                      type="number"
+                      required="true"
+                      value={state.productPrice}
                     />
                   </FormGroup>
-
-                  <Label className="col-form-label pt-0"> Image Upload</Label>
-                  <MyDropzone />
                 </div>
               </CardBody>
             </Card>
@@ -82,7 +107,14 @@ const Digital_add_pro = () => {
                         Add Description
                       </Label>
 
-                      <textarea rows="4" cols="12"></textarea>
+                      <textarea
+                        value={state.productDescription}
+                        rows="4"
+                        cols="12"
+                        style={{
+                          padding: "10px",
+                        }}
+                      ></textarea>
                     </div>
                   </FormGroup>
                 </div>
@@ -100,12 +132,20 @@ const Digital_add_pro = () => {
                       className="form-control"
                       id="validationCustom05"
                       type="text"
-                      required=""
+                      required="true"
+                      value={state.productMetaTitle}
                     />
                   </FormGroup>
                   <FormGroup>
                     <Label className="col-form-label">Meta Description</Label>
-                    <textarea rows="4" cols="12"></textarea>
+                    <textarea
+                      value={state.productMetaDesc}
+                      rows="4"
+                      cols="12"
+                      style={{
+                        padding: "10px",
+                      }}
+                    ></textarea>
                   </FormGroup>
                   <FormGroup className="mb-0">
                     <div className="product-buttons text-center">

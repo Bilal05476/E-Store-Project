@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Breadcrumb from "./common/breadcrumb";
-import { Navigation, Box, DollarSign } from "react-feather";
+import { Navigation, Box, DollarSign, Activity } from "react-feather";
 import CountUp from "react-countup";
 
 import user2 from "../assets/images/dashboard/user2.jpg";
@@ -44,11 +44,11 @@ const Dashboard = () => {
           </Col>
           <Col xl="3 xl-50" md="6">
             <Card className="o-hidden widget-cards">
-              <CardBody className="bg-primary">
+              <CardBody className="bg-secondary">
                 <Media className="static-top-widget row">
                   <div className="icons-widgets col-4">
                     <div className="align-self-center text-center">
-                      <Box className="font-primary" />
+                      <Box className="font-secondary" />
                     </div>
                   </div>
                   <Media body className="col-8">
@@ -64,11 +64,31 @@ const Dashboard = () => {
           </Col>
           <Col xl="3 xl-50" md="6">
             <Card className="o-hidden widget-cards">
-              <CardBody className="bg-success">
+              <CardBody className="bg-secondary">
                 <Media className="static-top-widget row">
                   <div className="icons-widgets col-4">
                     <div className="align-self-center text-center">
-                      <DollarSign className="font-success" />
+                      <DollarSign className="font-secondary" />
+                    </div>
+                  </div>
+                  <Media body className="col-8">
+                    <span className="m-0">Profit</span>
+                    <h3 className="mb-0">
+                      Rs <CountUp className="counter" end={2800} />
+                      <small> /Only</small>
+                    </h3>
+                  </Media>
+                </Media>
+              </CardBody>
+            </Card>
+          </Col>
+          <Col xl="3 xl-50" md="6">
+            <Card className="o-hidden widget-cards">
+              <CardBody className="bg-info">
+                <Media className="static-top-widget row">
+                  <div className="icons-widgets col-4">
+                    <div className="align-self-center text-center">
+                      <Activity className="font-info" />
                     </div>
                   </div>
                   <Media body className="col-8">

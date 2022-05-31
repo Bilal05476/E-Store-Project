@@ -4,7 +4,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./index.scss";
 import App from "./components/app";
 import PerfectScrollbar from "react-perfect-scrollbar";
-
 // Dashboard Component
 import Dashboard from "./components/dashboard";
 
@@ -20,10 +19,10 @@ import Profile from "./components/settings/profile";
 import Login from "./components/auth/login";
 
 const Root = () => {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    setUser("null");
-  }, []);
+  const [user, setUser] = useState("null");
+  // useEffect(() => {
+  //   setUser("null");
+  // }, []);
 
   return (
     <BrowserRouter basename={"/"}>
@@ -36,7 +35,7 @@ const Root = () => {
               component={Login}
             />
           ) : (
-            <App>
+            <App user={user} setUser={user}>
               <Route
                 exact
                 path={`${process.env.PUBLIC_URL}/`}

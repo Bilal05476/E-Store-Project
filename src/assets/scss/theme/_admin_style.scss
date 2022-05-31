@@ -254,6 +254,9 @@ a {
   .form-control {
     font-size: 14px;
   }
+  .form-control:focus{
+    outline: #0000ef !important; 
+  }
   .form-group {
     .radio_animated {
       margin-right: 16px;
@@ -275,6 +278,9 @@ a {
     }
     .form-control {
       font-size: 14px;
+    }
+    .form-control:focus {
+          outline: #0000ef !important;
     }
   }
   fieldset {
@@ -511,7 +517,7 @@ a {
       padding: 50px;
       background-image: url("../../images/dashboard/login-bg.png");
       background-position: center;
-      box-shadow: 1px 5px 24px 0 rgba(255, 128, 132, 0.8);
+      box-shadow: 1px 5px 24px 0 #0000ef64;
     }
     .form-group {
       margin-bottom: 1.5rem;
