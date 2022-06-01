@@ -7,7 +7,7 @@ const App = (props) => {
   return (
     <div>
       <div className="page-wrapper">
-        <Header user={props.user} setUser={props.setUser} />
+        <Header setUser={props.setUser} />
         <div className="page-body-wrapper">
           <Sidebar />
           {/* <RightSidebar /> */}

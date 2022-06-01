@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import UserMenu from "./user-menu";
 import { AlignLeft, Maximize2 } from "react-feather";
 
-const Header = () => {
+const Header = ({ setUser }) => {
   const [sidebar, setSidebar] = useState(true);
   // const [rightSidebar, setRightSidebar] = useState(true);
   const [navMenus, setNavMenus] = useState(false);
@@ -74,8 +74,7 @@ const Header = () => {
                   <Maximize2 />
                 </a>
               </li>
-
-              <UserMenu />
+              <UserMenu setUser={setUser} />
             </ul>
           </div>
         </div>

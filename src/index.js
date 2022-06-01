@@ -16,26 +16,79 @@ import Orders from "./components/sales/orders";
 //Manager Profile
 import Profile from "./components/settings/profile";
 
+// Login Component
 import Login from "./components/auth/login";
 
+// Firebase
+import { auth, db } from "./firebase";
+
 const Root = () => {
-  const [user, setUser] = useState("null");
-  // useEffect(() => {
-  //   setUser("null");
-  // }, []);
+  const [user, setUser] = useState(null);
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+  const [signError, setSignError] = useState("");
+  const [userData, setUserData] = useState({
+    userName: "",
+    userEmail: "",
+    mobileNo: "",
+    dob: "",
+    userImage: "",
+    location: "",
+    gender: "",
+  });
+
+  const signIn = (e) => {
+    e.preventDefault();
+    auth
+      .signInWithEmailAndPassword(email, pass)
+      .then((result) => {
+        setUser(result.user);
+        localStorage.setItem("user", JSON.stringify(result.user));
+        setEmail("");
+        setPass("");
+      })
+      .catch((error) => {
+        setSignError(error.message);
+      });
+  };
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")) || null);
+  }, []);
+
+  // if (user) {
+  //   const getUserData = db.collection("User").doc(user.uid);
+  //   getUserData.get().then((doc) => {
+  //     setUserData({
+  //       userName: doc.data().userName,
+  //       userEmail: doc.data.userEmail,
+  //       userImage: doc.data().userImage,
+  //       location: doc.data().location,
+  //       dob: doc.data().dob,
+  //       mobileNo: doc.data().mobileNo,
+  //       gender: doc.data().gender,
+  //     });
+  //   });
+  //   console.log(userData.userName);
+  // }
 
   return (
     <BrowserRouter basename={"/"}>
       <PerfectScrollbar>
         <Switch>
           {!user ? (
-            <Route
-              exact
-              path={`${process.env.PUBLIC_URL}/`}
-              component={Login}
-            />
+            <Route exact path={`${process.env.PUBLIC_URL}/`}>
+              <Login
+                email={email}
+                pass={pass}
+                setEmail={setEmail}
+                setPass={setPass}
+                signIn={signIn}
+                signError={signError}
+              />
+            </Route>
           ) : (
-            <App user={user} setUser={user}>
+            <App setUser={setUser}>
               <Route
                 exact
                 path={`${process.env.PUBLIC_URL}/`}

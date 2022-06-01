@@ -6,7 +6,7 @@ import "../../assets/scss/slick.scss";
 import "../../assets/scss/slick-theme.scss";
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
 
-const Login = () => {
+const Login = ({ email, pass, setEmail, setPass, signIn, signError }) => {
   var settings = {
     dots: true,
     infinite: true,
@@ -40,7 +40,14 @@ const Login = () => {
               <Col className="col-md-7 p-0 card-right">
                 <Card className="tab2-card">
                   <CardBody>
-                    <LoginTabset />
+                    <LoginTabset
+                      email={email}
+                      pass={pass}
+                      setEmail={setEmail}
+                      setPass={setPass}
+                      signIn={signIn}
+                      signError={signError}
+                    />
                   </CardBody>
                 </Card>
               </Col>

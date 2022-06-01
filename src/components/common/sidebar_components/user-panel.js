@@ -1,5 +1,4 @@
 import React from "react";
-import man from "../../../assets/images/dashboard/man.png";
 
 const UserPanel = () => {
 	return (
@@ -8,8 +7,8 @@ const UserPanel = () => {
 				<div>
 					<img
 						className="img-60 rounded-circle lazyloaded blur-up"
-						src={man}
-						alt="#"
+						src=""
+						alt="user"
 					/>
 				</div>
 				<h6 className="mt-3 f-14">BILAL AHMED</h6>

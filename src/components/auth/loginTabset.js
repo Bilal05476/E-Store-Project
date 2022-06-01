@@ -3,18 +3,10 @@ import { Tabs, TabList, TabPanel, Tab } from "react-tabs";
 import { User } from "react-feather";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 
-const LoginTabset = () => {
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
-
+const LoginTabset = ({ email, pass, setEmail, setPass, signIn, signError }) => {
   const clickActive = (event) => {
     document.querySelector(".nav-link").classList.remove("show");
     event.target.classList.add("show");
-  };
-
-  const signIn = (e) => {
-    e.preventDefault();
-    console.log("Hi: ", email, ", Pass: ", pass);
   };
 
   return (
@@ -28,6 +20,22 @@ const LoginTabset = () => {
         </TabList>
         <TabPanel>
           <Form className="form-horizontal auth-form">
+            {signError ? (
+              <div
+                style={{
+                  border: "2px dashed #0000ef",
+                  borderRadius: "15px",
+                  marginBottom: "10px",
+                  padding: "3px 25px",
+                  color: "crimson",
+                }}
+              >
+                {signError}
+              </div>
+            ) : (
+              <></>
+            )}
+
             <FormGroup>
               <Input
                 required
