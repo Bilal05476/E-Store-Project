@@ -1,11 +1,11 @@
 import React, { Fragment } from "react";
+import { Image } from "react-feather";
 
-import designer from "../../assets/images/dashboard/designer.jpg";
 import TabsetProfile from "./tabset-profile";
 import Breadcrumb from "../common/breadcrumb";
 import { Card, CardBody, Col, Container, Media, Row, Button } from "reactstrap";
 
-const Profile = () => {
+const Profile = ({ userData }) => {
   return (
     <Fragment>
       <Breadcrumb title="Profile" parent="Settings" />
@@ -15,13 +15,19 @@ const Profile = () => {
             <Card>
               <CardBody>
                 <div className="profile-details text-center">
-                  <img
-                    src={designer}
-                    alt=""
-                    className="img-fluid img-90 rounded-circle blur-up lazyloaded"
-                  />
-                  <h5 className="f-w-600 f-16 mb-0">Bilal Ahmed</h5>
-                  <span>storemanager@gmail.com</span>
+                  {userData.userImage ? (
+                    <img
+                      src={userData.userImage}
+                      alt=""
+                      className="img-fluid img-90 rounded-circle blur-up lazyloaded"
+                    />
+                  ) : (
+                    <Image className="loading-icon" />
+                  )}
+              
+
+                  <h5 className="f-w-600 f-16 mb-0">{userData.userName}</h5>
+                  <span>{userData.userEmail}</span>
                   <div className="social">
                     <div className="form-group btn-showcase">
                       <Button color="btn social-btn btn-fb d-inline-block">
@@ -98,7 +104,7 @@ const Profile = () => {
           <Col xl="8">
             <Card className="profile-card">
               <CardBody>
-                <TabsetProfile />
+                <TabsetProfile userData={userData} />
               </CardBody>
             </Card>
           </Col>

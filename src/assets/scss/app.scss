@@ -14,3 +14,21 @@
 *{
     font-family: "Poppins", sans-serif;
 }
+
+.loading-icon {
+    animation: scaling 2s infinite linear;
+    transition: 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+}
+
+@keyframes scaling{
+    from{
+        transform: scale(1);
+    }
+    to{
+        transform: scale(1.05);
+        color: #0000ef;
+    }
+}
+
+

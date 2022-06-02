@@ -1,9 +1,8 @@
 import React, { Fragment } from "react";
 import { Link, useHistory } from "react-router-dom";
-//images import
-import man from "../../../assets/images/dashboard/man.png";
+import { User, LogOut, Image } from "react-feather";
 
-const UserMenu = ({ setUser }) => {
+const UserMenu = ({ setUser, userData }) => {
   const history = useHistory();
   const signOut = (e) => {
     e.preventDefault();
@@ -15,11 +14,16 @@ const UserMenu = ({ setUser }) => {
     <Fragment>
       <li className="onhover-dropdown">
         <div className="media align-items-center">
-          <img
-            className="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded"
-            src={man}
-            alt="header-user"
-          />
+          {userData.userImage ? (
+            <img
+              className="align-self-center pull-right img-50 rounded-circle blur-up lazyloaded"
+              src={userData.userImage}
+              alt="header-user"
+            />
+          ) : (
+            <Image className="loading-icon" />
+          )}
+
           <div className="dotted-animation">
             <span className="animate-circle"></span>
             <span className="main-circle"></span>
@@ -28,13 +32,14 @@ const UserMenu = ({ setUser }) => {
         <ul className="profile-dropdown onhover-show-div p-20 profile-dropdown-hover">
           <li>
             <Link to={`${process.env.PUBLIC_URL}/settings/profile`}>
-              <i data-feather="user"></i>Profile
+              <User /> Profile
             </Link>
           </li>
 
           <li>
             <a onClick={signOut}>
-              <i data-feather="log-out"></i>Logout
+              <LogOut />
+              Logout
             </a>
           </li>
         </ul>

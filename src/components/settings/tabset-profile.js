@@ -3,7 +3,7 @@ import { Tabs, TabList, TabPanel, Tab } from "react-tabs";
 import { User } from "react-feather";
 import { Table } from "reactstrap";
 
-const TabsetProfile = () => {
+const TabsetProfile = ({userData}) => {
   return (
     <div>
       <Tabs>
@@ -22,27 +22,27 @@ const TabsetProfile = () => {
                 <tbody>
                   <tr>
                     <td>Full Name:</td>
-                    <td>Bilal Ahmed</td>
+                    <td>{userData.userName}</td>
                   </tr>
                   <tr>
                     <td>Email:</td>
-                    <td>storemanager@gmail.com</td>
+                    <td>{userData.userEmail}</td>
                   </tr>
                   <tr>
                     <td>Gender:</td>
-                    <td>Male</td>
+                    <td>{userData.gender}</td>
                   </tr>
                   <tr>
                     <td>Mobile Number:</td>
-                    <td>+92 312 0000 705</td>
+                    <td>{userData.mobileNo}</td>
                   </tr>
                   <tr>
                     <td>DOB:</td>
-                    <td>Jan, 20 2000</td>
+                    <td>{userData.dob}</td>
                   </tr>
                   <tr>
                     <td>Location:</td>
-                    <td>PK</td>
+                    <td>{userData.location}</td>
                   </tr>
                 </tbody>
               </Table>

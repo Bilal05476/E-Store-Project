@@ -36,6 +36,11 @@ const Root = () => {
     location: "",
     gender: "",
   });
+  const [isCompleted, setIsCompleted] = useState(false);
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")) || null);
+  }, []);
 
   const signIn = (e) => {
     e.preventDefault();
@@ -52,25 +57,23 @@ const Root = () => {
       });
   };
 
-  useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("user")) || null);
-  }, []);
-
-  // if (user) {
-  //   const getUserData = db.collection("User").doc(user.uid);
-  //   getUserData.get().then((doc) => {
-  //     setUserData({
-  //       userName: doc.data().userName,
-  //       userEmail: doc.data.userEmail,
-  //       userImage: doc.data().userImage,
-  //       location: doc.data().location,
-  //       dob: doc.data().dob,
-  //       mobileNo: doc.data().mobileNo,
-  //       gender: doc.data().gender,
-  //     });
-  //   });
-  //   console.log(userData.userName);
-  // }
+  if (!isCompleted) {
+    if (user) {
+      const getUserData = db.collection("User").doc(user.uid);
+      getUserData.get().then((doc) => {
+        setUserData({
+          userName: doc.data().userName,
+          userEmail: doc.data().userEmail,
+          userImage: doc.data().userImage,
+          location: doc.data().location,
+          dob: doc.data().dob,
+          mobileNo: doc.data().mobileNo,
+          gender: doc.data().gender,
+        });
+        setIsCompleted(true);
+      });
+    }
+  }
 
   return (
     <BrowserRouter basename={"/"}>
@@ -88,18 +91,13 @@ const Root = () => {
               />
             </Route>
           ) : (
-            <App setUser={setUser}>
-              <Route
-                exact
-                path={`${process.env.PUBLIC_URL}/`}
-                component={Dashboard}
-              />
-              <Route
-                exact
-                path={`${process.env.PUBLIC_URL}/dashboard`}
-                component={Dashboard}
-              />
-
+            <App setUser={setUser} userData={userData}>
+              <Route exact path={`${process.env.PUBLIC_URL}/`}>
+                <Dashboard userData={userData} />
+              </Route>
+              <Route exact path={`${process.env.PUBLIC_URL}/dashboard`}>
+                <Dashboard userData={userData} />
+              </Route>
               <Route
                 path={`${process.env.PUBLIC_URL}/products/add-product`}
                 component={Digital_add_pro}
@@ -110,10 +108,9 @@ const Root = () => {
                 component={Orders}
               />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/settings/profile`}
-                component={Profile}
-              />
+              <Route path={`${process.env.PUBLIC_URL}/settings/profile`}>
+                <Profile userData={userData} />
+              </Route>
             </App>
           )}
         </Switch>

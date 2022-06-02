@@ -6,7 +6,7 @@ import { MENUITEMS } from "../../../constants/menu";
 // image import
 import logo from "../../../assets/images/dashboard/ebazar-b.png";
 
-const Sidebar = () => {
+const Sidebar = ({userData}) => {
   const [mainmenu, setMainMenu] = useState(MENUITEMS);
 
   useEffect(() => {
@@ -193,7 +193,7 @@ const Sidebar = () => {
           </div>
         </div>
         <div className="sidebar custom-scrollbar">
-          <UserPanel />
+          <UserPanel userData={userData}/>
           <ul className="sidebar-menu">{mainMenu}</ul>
         </div>
       </div>

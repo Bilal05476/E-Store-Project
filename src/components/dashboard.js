@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 const Dashboard = () => {
   return (
     <Fragment>
-      <Breadcrumb title="" parent="Dashboard" />
+      <Breadcrumb title="Dashboard" parent="Home" />
       <Container fluid={true}>
         <Row>
           <Col xl="3 xl-50" md="6">
