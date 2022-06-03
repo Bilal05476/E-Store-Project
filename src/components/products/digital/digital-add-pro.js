@@ -13,19 +13,96 @@ import {
   Row,
 } from "reactstrap";
 
+import { db } from "../../../firebase";
+
 const Digital_add_pro = () => {
-  const [state, setState] = useState({
-    productTitle: "",
-    productDescription: "",
-    productPrice: 0,
-    productImage: "",
-    productMetaTitle: "",
-    productMetaDesc: "",
-  });
+  const [productTitle, setProductTitle] = useState("");
+  const [productDescription, setProductDescription] = useState("");
+  const [productPrice, setProductPrice] = useState(0);
+  const [productImage, setProductImage] = useState("");
+  const [productMetaTitle, setProductMetaTitle] = useState("");
+  const [productMetaDesc, setProductMetaDesc] = useState("");
+  const [prodAdded, setProdAdded] = useState("");
+  const [prodFailed, setProdFailed] = useState("");
+
+  const prodData = db.collection("products");
+  const onProdAdd = async () => {
+    const newData = {
+      productTitle,
+      productDescription,
+      productPrice,
+      productImage,
+      productMetaTitle,
+      productMetaDesc,
+    };
+    prodData
+      .add(newData)
+      .then(() => {
+        setProdAdded("Product Successfully Added!");
+        setProductTitle("");
+        setProductDescription("");
+        setProductImage("");
+        setProductPrice("");
+        setProductMetaDesc("");
+        setProductMetaTitle("");
+      })
+      .catch((error) => {
+        setProdFailed("Error adding: ", error.message);
+      });
+    getReset();
+  };
+
+  const getReset = () => {
+    setTimeout(() => {
+      setProdAdded("");
+      setProdFailed("");
+    }, 5000);
+  };
+
+  const onResetProd = () => {
+    setProductTitle("");
+    setProductDescription("");
+    setProductImage("");
+    setProductPrice("");
+    setProductMetaDesc("");
+    setProductMetaTitle("");
+  };
   return (
     <>
       <Breadcrumb title="Add Products" parent="Product" />
       <Container fluid={true}>
+        {prodAdded && (
+          <div
+            className="display-messages"
+            style={{
+              textAlign: "center",
+              backgroundColor: "lightgreen",
+              padding: "10px",
+              marginBottom: "10px",
+              borderRadius: "10px",
+              border: "2px solid lightseagreen",
+              color: "green",
+            }}
+          >
+            {prodAdded}
+          </div>
+        )}
+        {prodFailed && (
+          <div
+            className="display-messages"
+            style={{
+              textAlign: "center",
+              backgroundColor: "pink",
+              padding: "10px",
+              marginBottom: "10px",
+              borderRadius: "10px",
+              border: "2px solid crimson",
+              color: "crimson",
+            }}
+          >
+            {prodFailed}
+          </div>
+        )}
         <Row className="product-adding">
           <Col xl="6">
             <Card>
@@ -42,13 +119,11 @@ const Digital_add_pro = () => {
                       className="form-control"
                       id="validationCustom01"
                       type="text"
-                      required="true"
-                      value={state.productTitle}
+                      required={true}
+                      value={productTitle}
+                      onChange={(e) => setProductTitle(e.target.value)}
                     />
                   </FormGroup>
-
-                  {/* <Label className="col-form-label pt-0"> Image Upload</Label> */}
-                  {/* <MyDropzone /> */}
 
                   <FormGroup
                     style={{
@@ -68,8 +143,8 @@ const Digital_add_pro = () => {
                       className="form-control"
                       id="validationCustom02"
                       type="file"
-                      required="true"
-                      value={state.productImage}
+                      // required={true}
+                      // value={state.productImage}
                       style={{
                         padding: "0px",
                         border: "0px",
@@ -85,8 +160,9 @@ const Digital_add_pro = () => {
                       className="form-control"
                       id="validationCustom02"
                       type="number"
-                      required="true"
-                      value={state.productPrice}
+                      required={true}
+                      value={productPrice}
+                      onChange={(e) => setProductPrice(e.target.value)}
                     />
                   </FormGroup>
                 </div>
@@ -108,7 +184,8 @@ const Digital_add_pro = () => {
                       </Label>
 
                       <textarea
-                        value={state.productDescription}
+                        value={productDescription}
+                        onChange={(e) => setProductDescription(e.target.value)}
                         rows="4"
                         cols="12"
                         style={{
@@ -132,14 +209,16 @@ const Digital_add_pro = () => {
                       className="form-control"
                       id="validationCustom05"
                       type="text"
-                      required="true"
-                      value={state.productMetaTitle}
+                      required={true}
+                      value={productMetaTitle}
+                      onChange={(e) => setProductMetaTitle(e.target.value)}
                     />
                   </FormGroup>
                   <FormGroup>
                     <Label className="col-form-label">Meta Description</Label>
                     <textarea
-                      value={state.productMetaDesc}
+                      value={productMetaDesc}
+                      onChange={(e) => setProductMetaDesc(e.target.value)}
                       rows="4"
                       cols="12"
                       style={{
@@ -149,10 +228,23 @@ const Digital_add_pro = () => {
                   </FormGroup>
                   <FormGroup className="mb-0">
                     <div className="product-buttons text-center">
-                      <Button type="button" color="primary">
-                        Add
-                      </Button>
-                      <Button type="reset" color="light">
+                      {!productTitle ||
+                      !productDescription ||
+                      !productMetaDesc ||
+                      !productPrice ||
+                      !productMetaTitle ? (
+                        ""
+                      ) : (
+                        <Button
+                          type="button"
+                          color="primary"
+                          onClick={onProdAdd}
+                        >
+                          Add
+                        </Button>
+                      )}
+
+                      <Button type="reset" color="light" onClick={onResetProd}>
                         Reset
                       </Button>
                     </div>
