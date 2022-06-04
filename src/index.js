@@ -37,10 +37,22 @@ const Root = () => {
     gender: "",
   });
   const [isCompleted, setIsCompleted] = useState(false);
+  const [orderItems, setOrderItems] = useState([]);
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")) || null);
+    const getOrderData = db.collection("order");
+    getOrderData.onSnapshot((snapshot) =>
+      setOrderItems(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      )
+    );
   }, []);
+
+  console.log(orderItems)
 
   const signIn = (e) => {
     e.preventDefault();
@@ -96,17 +108,16 @@ const Root = () => {
                 <Dashboard userData={userData} />
               </Route>
               <Route exact path={`${process.env.PUBLIC_URL}/dashboard`}>
-                <Dashboard userData={userData} />
+                <Dashboard userData={userData} orderItems={orderItems} />
               </Route>
               <Route
                 path={`${process.env.PUBLIC_URL}/products/add-product`}
                 component={Digital_add_pro}
               />
 
-              <Route
-                path={`${process.env.PUBLIC_URL}/sales/orders`}
-                component={Orders}
-              />
+              <Route path={`${process.env.PUBLIC_URL}/sales/orders`}>
+                <Orders orderItems={orderItems} />
+              </Route>
 
               <Route path={`${process.env.PUBLIC_URL}/settings/profile`}>
                 <Profile userData={userData} />

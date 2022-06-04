@@ -13,25 +13,25 @@ import {
   Row,
 } from "reactstrap";
 
-import { db } from "../../../firebase";
+import { db, storage } from "../../../firebase";
 
 const Digital_add_pro = () => {
   const [productTitle, setProductTitle] = useState("");
   const [productDescription, setProductDescription] = useState("");
-  const [productPrice, setProductPrice] = useState(0);
+  const [productPrice, setProductPrice] = useState("");
   const [productImage, setProductImage] = useState("");
   const [productMetaTitle, setProductMetaTitle] = useState("");
   const [productMetaDesc, setProductMetaDesc] = useState("");
   const [prodAdded, setProdAdded] = useState("");
   const [prodFailed, setProdFailed] = useState("");
 
-  const prodData = db.collection("products");
+  const prodData = db.collection("homearchive");
   const onProdAdd = async () => {
     const newData = {
-      productTitle,
+      name: productTitle,
       productDescription,
-      productPrice,
-      productImage,
+      price: parseInt(productPrice),
+      image: productImage,
       productMetaTitle,
       productMetaDesc,
     };
@@ -39,17 +39,20 @@ const Digital_add_pro = () => {
       .add(newData)
       .then(() => {
         setProdAdded("Product Successfully Added!");
-        setProductTitle("");
-        setProductDescription("");
-        setProductImage("");
-        setProductPrice("");
-        setProductMetaDesc("");
-        setProductMetaTitle("");
+        onResetProd();
       })
       .catch((error) => {
         setProdFailed("Error adding: ", error.message);
       });
     getReset();
+  };
+
+  const onMediaChange = async (e) => {
+    const media = e.target.files[0];
+    const storageRef = storage.ref();
+    const mediaRef = storageRef.child(media.name);
+    await mediaRef.put(media);
+    setProductImage(await mediaRef.getDownloadURL());
   };
 
   const getReset = () => {
@@ -143,8 +146,9 @@ const Digital_add_pro = () => {
                       className="form-control"
                       id="validationCustom02"
                       type="file"
-                      // required={true}
-                      // value={state.productImage}
+                      required={true}
+                      onChange={onMediaChange}
+                     
                       style={{
                         padding: "0px",
                         border: "0px",
