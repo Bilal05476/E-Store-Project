@@ -73,7 +73,6 @@ const Orders = ({ orderItems }) => {
     getOrderData.doc(id).update({
       isCompleted: true,
     });
-	setShowDetails("");
   };
   const [showDetails, setShowDetails] = useState("");
 
