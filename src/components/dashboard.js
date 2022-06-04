@@ -18,14 +18,12 @@ import {
 import { Link } from "react-router-dom";
 
 const Dashboard = ({ orderItems }) => {
-  const [order, setOrder] = useState("");
+  const [order, setOrder] = useState([]);
   useEffect(() => {
-    orderItems.map((item) => {
-      setOrder(item.data);
-      return <></>;
-    });
-    console.log(order);
-  }, []);
+    setOrder(orderItems[0]);
+    console.log("Order: ", order);
+  }, [])
+
   return (
     <Fragment>
       <Breadcrumb title="Dashboard" parent="Home" />

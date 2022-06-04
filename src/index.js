@@ -41,6 +41,9 @@ const Root = () => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("user")) || null);
+  }, []);
+
+  if (orderItems.length === 0) {
     const getOrderData = db.collection("order");
     getOrderData.onSnapshot((snapshot) =>
       setOrderItems(
@@ -50,8 +53,7 @@ const Root = () => {
         }))
       )
     );
-  }, []);
-
+  }
 
   const signIn = (e) => {
     e.preventDefault();
