@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Breadcrumb from "./common/breadcrumb";
 import { Navigation, Box, DollarSign, Activity } from "react-feather";
 import CountUp from "react-countup";
@@ -13,10 +13,19 @@ import {
   Media,
   Row,
   Table,
+  Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-const Dashboard = () => {
+const Dashboard = ({ orderItems }) => {
+  const [order, setOrder] = useState("");
+  useEffect(() => {
+    orderItems.map((item) => {
+      setOrder(item.data);
+      return <></>;
+    });
+    console.log(order);
+  }, []);
   return (
     <Fragment>
       <Breadcrumb title="Dashboard" parent="Home" />
@@ -108,31 +117,70 @@ const Dashboard = () => {
               <CardHeader>
                 <h5>Latest Orders</h5>
               </CardHeader>
-              <CardBody>
-                <div className="user-status table-responsive latest-order-table">
-                  <Table borderless>
-                    <thead>
-                      <tr>
-                        <th scope="col">Order ID</th>
-                        <th scope="col">Order Total</th>
-                        <th scope="col">Payment Method</th>
-                        <th scope="col">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td className="digits">Rs1200.00</td>
-                        <td className="font-secondary">Cash On Delivery</td>
-                        <td className="digits">In Process</td>
-                      </tr>
-                    </tbody>
-                  </Table>
-                  <Link to="/sales/orders" className="btn btn-primary">
-                    View All Orders
+              {/* {orderItems && (
+                <table>
+                  <thead style={{ borderBottom: "2px solid #ccc" }}>
+                    <tr>
+                      {["Order_Id", "Name", "Email", "Payment", "Status"].map(
+                        (item) => (
+                          <th style={{ padding: "20px", fontWeight: "500" }}>
+                            {item}
+                          </th>
+                        )
+                      )}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style={{ padding: "20px", fontWeight: "300" }}>
+                        {order.data.orderId}
+                      </td>
+                      <td style={{ padding: "20px", fontWeight: "300" }}>
+                        {order.data.userName}
+                      </td>
+                      <td style={{ padding: "20px", fontWeight: "300" }}>
+                        {order.data.userEmail}
+                      </td>
+                      <td style={{ padding: "20px", fontWeight: "300" }}>
+                        Cash on delivery
+                      </td>
+
+                      {order.data.isCompleted === false ? (
+                        <td style={{ padding: "20px", fontWeight: "300" }}>
+                          processing
+                        </td>
+                      ) : (
+                        <td style={{ padding: "20px", fontWeight: "300" }}>
+                          completed
+                        </td>
+                      )}
+                    </tr>
+                  </tbody>
+                  <Link
+                    to={`${process.env.PUBLIC_URL}/sales/orders`}
+                    style={{ padding: "20px" }}
+                  >
+                    <Button
+                      type="button"
+                      color="primary"
+                      style={{ margin: "10px auto" }}
+                    >
+                      More Orders
+                    </Button>
                   </Link>
+                </table>
+              )}
+              {!orderItems && (
+                <div
+                  style={{
+                    padding: "20px",
+                    fontWeight: "500",
+                    color: "#0000ef",
+                  }}
+                >
+                  No order in queue...
                 </div>
-              </CardBody>
+              )} */}
             </Card>
           </Col>
 

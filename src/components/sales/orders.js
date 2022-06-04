@@ -11,7 +11,7 @@ const ShowOrderDetails = ({ orderItems, showDetails }) => {
         <h5>Order Details: {showDetails}</h5>
       </CardHeader>
       <table>
-        <thead>
+        <thead style={{ borderBottom: "2px solid #ccc" }}>
           <tr>
             {["Color", "Image", "Name", "Quantity", "Price", "Size"].map(
               (item) => (
@@ -89,7 +89,7 @@ const Orders = ({ orderItems }) => {
               </CardHeader>
               {orderItems && (
                 <table>
-                  <thead>
+                  <thead style={{borderBottom: "2px solid #ccc"}}>
                     <tr>
                       {["Order_Id", "Name", "Email", "Total", "Status"].map(
                         (item) => (
@@ -178,7 +178,7 @@ const Orders = ({ orderItems }) => {
                     color: "#0000ef",
                   }}
                 >
-                  No order in queue :(
+                  No order in queue...
                 </div>
               )}
             </Card>

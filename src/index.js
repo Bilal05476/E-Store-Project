@@ -52,7 +52,6 @@ const Root = () => {
     );
   }, []);
 
-  console.log(orderItems)
 
   const signIn = (e) => {
     e.preventDefault();
