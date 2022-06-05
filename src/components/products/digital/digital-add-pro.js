@@ -30,7 +30,7 @@ const Digital_add_pro = () => {
     const newData = {
       name: productTitle,
       productDescription,
-      price: parseInt(productPrice),
+      price: parseFloat(productPrice),
       image: productImage,
       productMetaTitle,
       productMetaDesc,
