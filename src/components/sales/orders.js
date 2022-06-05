@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Breadcrumb from "../common/breadcrumb";
-import { Delete, CheckCircle, Eye } from "react-feather";
+import { Delete, CheckCircle, Eye, Image } from "react-feather";
 import { Card, CardHeader, Col, Container, Row } from "reactstrap";
 import { db } from "../../firebase";
 
@@ -31,11 +31,16 @@ const ShowOrderDetails = ({ orderItems, showDetails }) => {
                         {ite.productColor}
                       </td>
                       <td style={{ padding: "20px", fontWeight: "300" }}>
-                        <img
-                          width="90px"
-                          height="70px"
-                          src={ite.productImage}
-                        />
+                        {ite.productImage ? (
+                          <img
+                            src={ite.productImage}
+                            alt="product"
+                            width="90px"
+                            height="70px"
+                          />
+                        ) : (
+                          <Image className="loading-icon" />
+                        )}
                       </td>
                       <td style={{ padding: "20px", fontWeight: "300" }}>
                         {ite.productName}
@@ -66,7 +71,6 @@ const ShowOrderDetails = ({ orderItems, showDetails }) => {
 const Orders = ({ orderItems }) => {
   const getOrderData = db.collection("order");
   const onDeleteOrder = (id) => {
-    // alert(id);
     getOrderData.doc(id).delete();
   };
   const onCompleteOrder = (id) => {
@@ -75,6 +79,12 @@ const Orders = ({ orderItems }) => {
     });
   };
   const [showDetails, setShowDetails] = useState("");
+  const [show, setShow] = useState(false);
+
+  const showProdDetails = (id) => {
+    setShowDetails(id);
+    setShow(true);
+  };
 
   return (
     <>
@@ -89,7 +99,7 @@ const Orders = ({ orderItems }) => {
               </CardHeader>
               {orderItems && (
                 <table>
-                  <thead style={{borderBottom: "2px solid #ccc"}}>
+                  <thead style={{ borderBottom: "2px solid #ccc" }}>
                     <tr>
                       {["Order_Id", "Name", "Email", "Total", "Status"].map(
                         (item) => (
@@ -161,7 +171,7 @@ const Orders = ({ orderItems }) => {
                             cursor: "pointer",
                           }}
                           title="View Details"
-                          onClick={() => setShowDetails(item.id)}
+                          onClick={() => showProdDetails(item.id)}
                         >
                           <Eye />
                         </td>
@@ -182,11 +192,13 @@ const Orders = ({ orderItems }) => {
                 </div>
               )}
             </Card>
-
-            <ShowOrderDetails
-              orderItems={orderItems}
-              showDetails={showDetails}
-            />
+            {show && (
+              <ShowOrderDetails
+                orderItems={orderItems}
+                showDetails={showDetails}
+                setShow={setShow}
+              />
+            )}
           </Col>
         </Row>
       </Container>

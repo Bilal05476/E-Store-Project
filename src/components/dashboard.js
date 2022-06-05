@@ -1,9 +1,10 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useState } from "react";
 import Breadcrumb from "./common/breadcrumb";
-import { Navigation, Box, DollarSign, Activity } from "react-feather";
+import { Navigation, Activity } from "react-feather";
 import CountUp from "react-countup";
+import { Image } from "react-feather";
 
-import user2 from "../assets/images/dashboard/user2.jpg";
+// import user2 from "../assets/images/dashboard/user2.jpg";
 import {
   Card,
   CardBody,
@@ -17,12 +18,37 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
-const Dashboard = ({ orderItems }) => {
-  const [order, setOrder] = useState([]);
-  useEffect(() => {
-    setOrder(orderItems[0]);
-    console.log("Order: ", order);
-  }, [])
+const Dashboard = ({ orderItems, userData }) => {
+  const [orderTotal, setOrderTotal] = useState(0);
+  const [orderQueue, setOrderQueue] = useState(0);
+  setTimeout(() => {
+    if (orderTotal === 0) {
+      calculateMonthly();
+      setOrderQueue(orderItems.length);
+    }
+  }, 1500);
+  const calculateMonthly = () => {
+    var count = 0;
+    return (
+      <>
+        {orderItems.length > 0 && (
+          <>
+            {orderItems.map((item) => {
+              count += item.data.totalPrice;
+              setOrderTotal(count);
+              return <></>;
+            })}
+          </>
+        )}
+        {orderItems.length === 0 && (
+          <>
+            {setOrderTotal(0)}
+            return <></>;
+          </>
+        )}
+      </>
+    );
+  };
 
   return (
     <Fragment>
@@ -41,54 +67,15 @@ const Dashboard = ({ orderItems }) => {
                   <Media body className="col-8">
                     <span className="m-0">Orders</span>
                     <h3 className="mb-0">
-                      Rs <CountUp className="counter" end={12000} />
-                      <small> /Only</small>
+                      Total <CountUp className="counter" end={orderQueue} />
+                      <small> Only</small>
                     </h3>
                   </Media>
                 </Media>
               </CardBody>
             </Card>
           </Col>
-          <Col xl="3 xl-50" md="6">
-            <Card className="o-hidden widget-cards">
-              <CardBody className="bg-secondary">
-                <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <Box className="font-secondary" />
-                    </div>
-                  </div>
-                  <Media body className="col-8">
-                    <span className="m-0">Inventory</span>
-                    <h3 className="mb-0">
-                      Rs <CountUp className="counter" end={9200} />
-                      <small> /Only</small>
-                    </h3>
-                  </Media>
-                </Media>
-              </CardBody>
-            </Card>
-          </Col>
-          <Col xl="3 xl-50" md="6">
-            <Card className="o-hidden widget-cards">
-              <CardBody className="bg-secondary">
-                <Media className="static-top-widget row">
-                  <div className="icons-widgets col-4">
-                    <div className="align-self-center text-center">
-                      <DollarSign className="font-secondary" />
-                    </div>
-                  </div>
-                  <Media body className="col-8">
-                    <span className="m-0">Profit</span>
-                    <h3 className="mb-0">
-                      Rs <CountUp className="counter" end={2800} />
-                      <small> /Only</small>
-                    </h3>
-                  </Media>
-                </Media>
-              </CardBody>
-            </Card>
-          </Col>
+
           <Col xl="3 xl-50" md="6">
             <Card className="o-hidden widget-cards">
               <CardBody className="bg-info">
@@ -101,7 +88,7 @@ const Dashboard = ({ orderItems }) => {
                   <Media body className="col-8">
                     <span className="m-0">Sales</span>
                     <h3 className="mb-0">
-                      Rs <CountUp className="counter" end={2800} />
+                      Rs <CountUp className="counter" end={orderTotal} />
                       <small> /Only</small>
                     </h3>
                   </Media>
@@ -115,13 +102,16 @@ const Dashboard = ({ orderItems }) => {
               <CardHeader>
                 <h5>Latest Orders</h5>
               </CardHeader>
-              {/* {orderItems && (
+              {orderItems && (
                 <table>
                   <thead style={{ borderBottom: "2px solid #ccc" }}>
                     <tr>
                       {["Order_Id", "Name", "Email", "Payment", "Status"].map(
                         (item) => (
-                          <th style={{ padding: "20px", fontWeight: "500" }}>
+                          <th
+                            key={item}
+                            style={{ padding: "20px", fontWeight: "500" }}
+                          >
                             {item}
                           </th>
                         )
@@ -129,30 +119,32 @@ const Dashboard = ({ orderItems }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td style={{ padding: "20px", fontWeight: "300" }}>
-                        {order.data.orderId}
-                      </td>
-                      <td style={{ padding: "20px", fontWeight: "300" }}>
-                        {order.data.userName}
-                      </td>
-                      <td style={{ padding: "20px", fontWeight: "300" }}>
-                        {order.data.userEmail}
-                      </td>
-                      <td style={{ padding: "20px", fontWeight: "300" }}>
-                        Cash on delivery
-                      </td>
+                    {orderItems.map((item) => (
+                      <tr key={item.id}>
+                        <td style={{ padding: "20px", fontWeight: "300" }}>
+                          {item.data.orderId}
+                        </td>
+                        <td style={{ padding: "20px", fontWeight: "300" }}>
+                          {item.data.userName}
+                        </td>
+                        <td style={{ padding: "20px", fontWeight: "300" }}>
+                          {item.data.userEmail}
+                        </td>
+                        <td style={{ padding: "20px", fontWeight: "300" }}>
+                          Cash on delivery
+                        </td>
 
-                      {order.data.isCompleted === false ? (
-                        <td style={{ padding: "20px", fontWeight: "300" }}>
-                          processing
-                        </td>
-                      ) : (
-                        <td style={{ padding: "20px", fontWeight: "300" }}>
-                          completed
-                        </td>
-                      )}
-                    </tr>
+                        {item.data.isCompleted === false ? (
+                          <td style={{ padding: "20px", fontWeight: "300" }}>
+                            processing
+                          </td>
+                        ) : (
+                          <td style={{ padding: "20px", fontWeight: "300" }}>
+                            completed
+                          </td>
+                        )}
+                      </tr>
+                    ))}
                   </tbody>
                   <Link
                     to={`${process.env.PUBLIC_URL}/sales/orders`}
@@ -163,7 +155,7 @@ const Dashboard = ({ orderItems }) => {
                       color="primary"
                       style={{ margin: "10px auto" }}
                     >
-                      More Orders
+                      Order Details
                     </Button>
                   </Link>
                 </table>
@@ -178,7 +170,7 @@ const Dashboard = ({ orderItems }) => {
                 >
                   No order in queue...
                 </div>
-              )} */}
+              )}
             </Card>
           </Col>
 
@@ -202,16 +194,21 @@ const Dashboard = ({ orderItems }) => {
                       <tr>
                         <td className="bd-t-none u-s-tb">
                           <div className="align-middle image-sm-size">
-                            <img
-                              className="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded"
-                              src={user2}
-                              alt=""
-                              data-original-title=""
-                              title=""
-                            />
+                            
+                            {userData.userImage ? (
+                              <img
+                                className="img-radius align-top m-r-15 rounded-circle blur-up lazyloaded"
+                                src={userData.userImage}
+                                alt="user"
+                                data-original-title=""
+                                title="user"
+                              />
+                            ) : (
+                              <Image className="loading-icon" />
+                            )}
                             <div className="d-inline-block">
                               <h6>
-                                Bilal Ahmed{" "}
+                                {userData.userName}{" "}
                                 <span className="text-muted digits">
                                   (Online)
                                 </span>

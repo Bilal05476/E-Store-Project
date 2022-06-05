@@ -106,7 +106,7 @@ const Root = () => {
           ) : (
             <App setUser={setUser} userData={userData}>
               <Route exact path={`${process.env.PUBLIC_URL}/`}>
-                <Dashboard userData={userData} />
+                <Dashboard userData={userData} orderItems={orderItems} />
               </Route>
               <Route exact path={`${process.env.PUBLIC_URL}/dashboard`}>
                 <Dashboard userData={userData} orderItems={orderItems} />
