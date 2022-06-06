@@ -123,11 +123,11 @@ const Sidebar = ({userData}) => {
               }
             >
               {childrenItem.type === "sub" ? (
-                <a href="#" onClick={() => setNavActive(childrenItem)}>
+                <span onClick={() => setNavActive(childrenItem)}>
                   <i className="fa fa-circle"></i>
                   {childrenItem.title}{" "}
                   <i className="fa fa-angle-right pull-right"></i>
-                </a>
+                </span>
               ) : (
                 ""
               )}

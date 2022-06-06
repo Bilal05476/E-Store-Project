@@ -5,13 +5,13 @@ import { AlignLeft, Maximize2 } from "react-feather";
 const Header = ({ setUser, userData }) => {
   const [sidebar, setSidebar] = useState(true);
   // const [rightSidebar, setRightSidebar] = useState(true);
-  const [navMenus, setNavMenus] = useState(false);
+  // const [navMenus, setNavMenus] = useState(false);
 
-  const toggle = () => {
-    setNavMenus((prevState) => ({
-      navMenus: !prevState.navMenus,
-    }));
-  };
+  // const toggle = () => {
+  //   setNavMenus((prevState) => ({
+  //     navMenus: !prevState.navMenus,
+  //   }));
+  // };
   const goFull = () => {
     if (
       (document.fullScreenElement && document.fullScreenElement !== null) ||
@@ -68,7 +68,7 @@ const Header = ({ setUser, userData }) => {
             </div>
           </div>
           <div className="nav-right col">
-            <ul className={"nav-menus " + (navMenus ? "open" : "")}>
+            <ul className="nav-menus">
               <li>
                 <a onClick={goFull} className="text-dark" href="#javaScript">
                   <Maximize2 />
