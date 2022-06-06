@@ -91,41 +91,49 @@ const Root = () => {
   return (
     <BrowserRouter basename={"/"}>
       <PerfectScrollbar>
-        <Switch>
-          {!user ? (
-            <Route exact path={`${process.env.PUBLIC_URL}/`}>
-              <Login
-                email={email}
-                pass={pass}
-                setEmail={setEmail}
-                setPass={setPass}
-                signIn={signIn}
-                signError={signError}
-              />
-            </Route>
-          ) : (
-            <App setUser={setUser} userData={userData}>
+        <div className="when-screen">
+          <Switch>
+            {!user ? (
               <Route exact path={`${process.env.PUBLIC_URL}/`}>
-                <Dashboard userData={userData} orderItems={orderItems} />
+                <Login
+                  email={email}
+                  pass={pass}
+                  setEmail={setEmail}
+                  setPass={setPass}
+                  signIn={signIn}
+                  signError={signError}
+                />
               </Route>
-              <Route exact path={`${process.env.PUBLIC_URL}/dashboard`}>
-                <Dashboard userData={userData} orderItems={orderItems} />
-              </Route>
-              <Route
-                path={`${process.env.PUBLIC_URL}/products/add-product`}
-                component={Digital_add_pro}
-              />
+            ) : (
+              <App setUser={setUser} userData={userData}>
+                <Route exact path={`${process.env.PUBLIC_URL}/`}>
+                  <Dashboard userData={userData} orderItems={orderItems} />
+                </Route>
+                <Route exact path={`${process.env.PUBLIC_URL}/dashboard`}>
+                  <Dashboard userData={userData} orderItems={orderItems} />
+                </Route>
+                <Route
+                  path={`${process.env.PUBLIC_URL}/products/add-product`}
+                  component={Digital_add_pro}
+                />
 
-              <Route path={`${process.env.PUBLIC_URL}/sales/orders`}>
-                <Orders orderItems={orderItems} />
-              </Route>
+                <Route path={`${process.env.PUBLIC_URL}/sales/orders`}>
+                  <Orders orderItems={orderItems} />
+                </Route>
 
-              <Route path={`${process.env.PUBLIC_URL}/settings/profile`}>
-                <Profile userData={userData} />
-              </Route>
-            </App>
-          )}
-        </Switch>
+                <Route path={`${process.env.PUBLIC_URL}/settings/profile`}>
+                  <Profile userData={userData} />
+                </Route>
+              </App>
+            )}
+          </Switch>
+        </div>
+        <div className="no-screen">
+          <h1>
+            Please open This project on screen width 992px min. Because this web
+            only for large screen.{" "}
+          </h1>
+        </div>
       </PerfectScrollbar>
     </BrowserRouter>
   );

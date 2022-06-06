@@ -15,6 +15,7 @@ const App = (props) => {
           <Footer />
         </div>
       </div>
+      
     </div>
   );
 };

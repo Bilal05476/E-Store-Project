@@ -43,3 +43,16 @@
         display: block;
     }
 }
+
+.no-screen{
+    display: none;
+}
+
+@media(max-width: 996px) {
+.when-screen {
+    display: none;
+}
+.no-screen{
+    display: block;
+}
+}
