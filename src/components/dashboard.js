@@ -34,7 +34,8 @@ const Dashboard = ({ orderItems, userData }) => {
         {orderItems.length > 0 && (
           <>
             {orderItems.map((item) => {
-              count += item.data.totalPrice;
+              const ordersAmount = parseInt(item.data.totalPrice);
+              count += ordersAmount;
               setOrderTotal(count);
               return <></>;
             })}
